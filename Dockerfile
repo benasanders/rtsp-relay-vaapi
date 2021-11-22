@@ -45,8 +45,8 @@ RUN curl -L https://github.com/aler9/rtsp-simple-proxy/releases/download/v0.3.10
 RUN tar -xf rtsp-simple-proxy_v0.3.10_linux_amd64.tar.gz
 RUN mv rtsp-simple-proxy /usr/local/bin/
 
-COPY --from=BUILD /usr/local/bin/rtsp-simple-server /bin/rtsp-simple-server
-COPY --from=BUILD /usr/local/bin/rtsp-simple-proxy /bin/rtsp-simple-proxy
+COPY /usr/local/bin/rtsp-simple-server /bin/rtsp-simple-server
+COPY /usr/local/bin/rtsp-simple-proxy /bin/rtsp-simple-proxy
 
 ADD proxy.yml /tmp/proxy.yml
 ADD start-relay.sh /
