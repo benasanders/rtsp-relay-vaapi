@@ -42,6 +42,6 @@ COPY --from=BUILD /go/bin/rtsp-simple-proxy /bin/rtsp-simple-proxy
 ADD proxy.yml /tmp/proxy.yml
 ADD start-relay.sh /
 
-#ENTRYPOINT [ "/bin/bash" ]
-#CMD ["/start-relay.sh"]
-ENTRYPOINT ["tail", "-f", "/dev/null"]
+ENTRYPOINT [ "/bin/bash" ]
+CMD ["/start-relay.sh"]
+#ENTRYPOINT ["tail", "-f", "/dev/null"]
