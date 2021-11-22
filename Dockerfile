@@ -38,10 +38,10 @@ ENV FFMPEG_OUTPUT_ARGS='-c copy'
 RUN apt-get update -y
 RUN apt-get install -y gettext bash git wget
 
-wget https://github.com/aler9/rtsp-simple-server/releases/download/v0.17.9/rtsp-simple-server_v0.17.9_linux_amd64.tar.gz
-tar -xf rtsp-simple-server_v0.17.9_linux_amd64.tar.gz
-sudo mv rtsp-simple-server_v0.17.9_linux_amd64/rtsp-simple-server /usr/local/bin/
-sudo mv rtsp-simple-server_v0.17.9_linux_amd64/rtsp-simple-server.yml /usr/local/etc/
+RUN wget https://github.com/aler9/rtsp-simple-server/releases/download/v0.17.9/rtsp-simple-server_v0.17.9_linux_amd64.tar.gz
+RUN tar -xf rtsp-simple-server_v0.17.9_linux_amd64.tar.gz
+RUN mv rtsp-simple-server_v0.17.9_linux_amd64/rtsp-simple-server /usr/local/bin/
+RUN mv rtsp-simple-server_v0.17.9_linux_amd64/rtsp-simple-server.yml /usr/local/etc/
 
 COPY --from=BUILD /go/bin/rtsp-simple-server /bin/rtsp-simple-server
 COPY --from=BUILD /go/bin/rtsp-simple-proxy /bin/rtsp-simple-proxy
