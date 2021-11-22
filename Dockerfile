@@ -35,6 +35,7 @@ ENV FFMPEG_INPUT_ARGS ''
 ENV FFMPEG_OUTPUT_ARGS='-c copy'
 
 #RUN apk --update add gettext bash
+RUN apt-get update -y
 RUN apt-get install -y gettext bash
 
 COPY --from=BUILD /go/bin/rtsp-simple-server /bin/rtsp-simple-server
