@@ -21,7 +21,7 @@ RUN go build -o /go/bin/rtsp-simple-proxy .
 
 
 
-FROM jrottenberg/ffmpeg:4.0-alpine
+FROM jrottenberg/ffmpeg:4.0-vaapi
 
 EXPOSE 8554
 EXPOSE 8000
