@@ -35,10 +35,10 @@ ENV FFMPEG_INPUT_ARGS ''
 ENV FFMPEG_OUTPUT_ARGS='-c copy'
 
 #RUN apk --update add gettext bash
-RUN apt-get update -y
-RUN apt-get install -y gettext bash git wget
+#RUN apt-get update -y
+#RUN apt-get install -y gettext bash git
 
-RUN wget https://github.com/aler9/rtsp-simple-server/releases/download/v0.17.9/rtsp-simple-server_v0.17.9_linux_amd64.tar.gz
+RUN curl https://github.com/aler9/rtsp-simple-server/releases/download/v0.17.9/rtsp-simple-server_v0.17.9_linux_amd64.tar.gz --output rtsp-simple-server_v0.17.9_linux_amd64
 RUN tar -xf rtsp-simple-server_v0.17.9_linux_amd64.tar.gz
 RUN mv rtsp-simple-server_v0.17.9_linux_amd64/rtsp-simple-server /usr/local/bin/
 RUN mv rtsp-simple-server_v0.17.9_linux_amd64/rtsp-simple-server.yml /usr/local/etc/
