@@ -29,6 +29,6 @@ RUN mv rtsp-simple-proxy /usr/local/bin/
 ADD proxy.yml /tmp/proxy.yml
 ADD start-relay.sh /
 
-ENTRYPOINT [ "/bin/bash" ]
+#ENTRYPOINT [ "/bin/bash" ]
 #CMD ["/start-relay.sh"]
-#ENTRYPOINT ["tail", "-f", "/dev/null"]
+ENTRYPOINT ["tail", "-f", "/dev/null"]
