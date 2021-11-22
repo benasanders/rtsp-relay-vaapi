@@ -30,5 +30,5 @@ ADD proxy.yml /tmp/proxy.yml
 ADD start-relay.sh /
 
 ENTRYPOINT [ "/bin/bash" ]
-CMD ["/start-relay.sh"]
+#CMD ["/start-relay.sh"]
 #ENTRYPOINT ["tail", "-f", "/dev/null"]
