@@ -21,7 +21,7 @@ RUN go build -o /go/bin/rtsp-simple-proxy .
 
 
 
-FROM jrottenberg/ffmpeg:4.0-vaapi
+FROM jrottenberg/ffmpeg:4.1-vaapi
 
 EXPOSE 8554
 EXPOSE 8000
@@ -44,4 +44,4 @@ ADD start-relay.sh /
 
 ENTRYPOINT [ "/bin/bash" ]
 
-CMD ["/start-relay.sh"]
+#CMD ["/start-relay.sh"]
