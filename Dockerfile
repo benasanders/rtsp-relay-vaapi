@@ -1,22 +1,22 @@
-FROM golang:1.17.3-alpine AS BUILD
+# FROM golang:1.17.3-alpine AS BUILD
 
-RUN apk --update add git
+# RUN apk --update add git
 
-#RTSP SIMPLE SERVER
-WORKDIR /tmp
-RUN git clone https://github.com/aler9/rtsp-simple-server.git
-WORKDIR /tmp/rtsp-simple-server
+# #RTSP SIMPLE SERVER
+# WORKDIR /tmp
+# RUN git clone https://github.com/aler9/rtsp-simple-server.git
+# WORKDIR /tmp/rtsp-simple-server
 
-RUN go mod download
-RUN go build -o /go/bin/rtsp-simple-server .
+# RUN go mod download
+# RUN go build -o /go/bin/rtsp-simple-server .
 
-#RTSP SIMPLE PROXY
-WORKDIR /tmp
-RUN git clone https://github.com/aler9/rtsp-simple-proxy.git
-WORKDIR /tmp/rtsp-simple-proxy
+# #RTSP SIMPLE PROXY
+# WORKDIR /tmp
+# RUN git clone https://github.com/aler9/rtsp-simple-proxy.git
+# WORKDIR /tmp/rtsp-simple-proxy
 
-RUN go mod download
-RUN go build -o /go/bin/rtsp-simple-proxy .
+# RUN go mod download
+# RUN go build -o /go/bin/rtsp-simple-proxy .
 
 
 
@@ -36,7 +36,12 @@ ENV FFMPEG_OUTPUT_ARGS='-c copy'
 
 #RUN apk --update add gettext bash
 RUN apt-get update -y
-RUN apt-get install -y gettext bash
+RUN apt-get install -y gettext bash git wget
+
+wget https://github.com/aler9/rtsp-simple-server/releases/download/v0.17.9/rtsp-simple-server_v0.17.9_linux_amd64.tar.gz
+tar -xf rtsp-simple-server_v0.17.9_linux_amd64.tar.gz
+sudo mv rtsp-simple-server_v0.17.9_linux_amd64/rtsp-simple-server /usr/local/bin/
+sudo mv rtsp-simple-server_v0.17.9_linux_amd64/rtsp-simple-server.yml /usr/local/etc/
 
 COPY --from=BUILD /go/bin/rtsp-simple-server /bin/rtsp-simple-server
 COPY --from=BUILD /go/bin/rtsp-simple-proxy /bin/rtsp-simple-proxy
