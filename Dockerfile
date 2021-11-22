@@ -1,7 +1,6 @@
 FROM golang:1.13.8-alpine AS BUILD
 
-RUN apt update
-RUN apt install -y git
+RUN apk --update add git
 
 #RTSP SIMPLE SERVER
 WORKDIR /tmp
