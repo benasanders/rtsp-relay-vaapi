@@ -1,6 +1,7 @@
 FROM golang:1.13.8-alpine AS BUILD
 
-RUN apk --update add git
+RUN apt update
+RUN apt install -y git
 
 #RTSP SIMPLE SERVER
 WORKDIR /tmp
@@ -34,7 +35,7 @@ ENV FORCE_FFMPEG 'true'
 ENV FFMPEG_INPUT_ARGS ''
 ENV FFMPEG_OUTPUT_ARGS='-c copy'
 
-RUN apk --update add gettext bash
+#RUN apk --update add gettext bash
 
 COPY --from=BUILD /go/bin/rtsp-simple-server /bin/rtsp-simple-server
 COPY --from=BUILD /go/bin/rtsp-simple-proxy /bin/rtsp-simple-proxy
