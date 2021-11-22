@@ -39,10 +39,17 @@ RUN apt-get update -y
 RUN apt-get install -y curl tar
 #gettext bash git
 
-RUN curl https://github.com/aler9/rtsp-simple-server/releases/download/v0.17.9/rtsp-simple-server_v0.17.9_linux_amd64.tar.gz --output rtsp-simple-server_v0.17.9_linux_amd64.tar.gz
+RUN curl -L https://github.com/aler9/rtsp-simple-server/releases/download/v0.17.9/rtsp-simple-server_v0.17.9_linux_amd64.tar.gz --output rtsp-simple-server_v0.17.9_linux_amd64.tar.gz
 RUN tar -xf rtsp-simple-server_v0.17.9_linux_amd64.tar.gz
-RUN mv rtsp-simple-server_v0.17.9_linux_amd64/rtsp-simple-server /usr/local/bin/
-RUN mv rtsp-simple-server_v0.17.9_linux_amd64/rtsp-simple-server.yml /usr/local/etc/
+RUN mv rtsp-simple-server /usr/local/bin/
+RUN mv rtsp-simple-server.yml /usr/local/etc/
+
+RUN curl -L https://github.com/aler9/rtsp-simple-proxy/releases/download/v0.3.10/rtsp-simple-proxy_v0.3.10_linux_amd64.tar.gz --output rtsp-simple-proxy_v0.3.10_linux_amd64.tar.gz
+RUN tar -xf rtsp-simple-proxy_v0.3.10_linux_amd64.tar.gz
+RUN mv rtsp-simple-proxy /usr/local/bin/
+
+
+
 
 #COPY --from=BUILD /go/bin/rtsp-simple-server /bin/rtsp-simple-server
 #COPY --from=BUILD /go/bin/rtsp-simple-proxy /bin/rtsp-simple-proxy
@@ -50,6 +57,6 @@ RUN mv rtsp-simple-server_v0.17.9_linux_amd64/rtsp-simple-server.yml /usr/local/
 ADD proxy.yml /tmp/proxy.yml
 ADD start-relay.sh /
 
-#ENTRYPOINT [ "/bin/bash" ]
-ENTRYPOINT ["tail", "-f", "/dev/null"]
-#CMD ["/start-relay.sh"]
+ENTRYPOINT [ "/bin/bash" ]
+#ENTRYPOINT ["tail", "-f", "/dev/null"]
+CMD ["/start-relay.sh"]
